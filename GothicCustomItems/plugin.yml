@@ -1,0 +1,29 @@
+name: GothicCustomItems
+main: com.loncha.gothiccustomitems.Main
+version: 0.1
+commands:
+   nuevoitem:
+      description: Abre la interfaz de profesiones.
+      usage: /nuevoitem <item> <cantidad> <durabilidad> <atributos> <valorAtributo> <areaEfectoAtributo>
+   setnombre:
+      description: Establecer un nombre al item en la mano.
+      usage: /setnombre <nombre>
+   setdescripcion:
+      description: Establecer una descripcion al item en la mano.
+      usage: /setdescripcion <descripcion>
+   setefectos:
+      description: Establecer efectos a un objeto.
+      usage: /setefectos <efecto> <duracion> <accion>
+   verefectos:
+      description: Te permite ver todos los efectos guardados.
+      usage: /verefectos 
+   borrarefecto:
+      description: Te permite borrar un efecto de la lista.
+      usage: /borrarefecto <numero>
+   recargarefectos:
+      description: Comando para cargar los efectos.
+      usage: /recargarefectos
+permissions:
+   gcustomitems.crearitems:
+      description: Permite crear items custom.
+      default: op
