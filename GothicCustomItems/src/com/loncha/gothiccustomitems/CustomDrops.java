@@ -60,7 +60,7 @@ public class CustomDrops implements Listener{
 	
 	//Método para leer la información de customdrops.yml
 	public void cargarItems() {
-		if (getCustomConfig().getConfigurationSection("items") != null) {
+		if (getCustomConfig().getConfigurationSection("items").getKeys(true) != null) {
 			int itemCounter = 0, itemCounter2 = 1; //Contadores de items
 			
 			arrColocables = new String[getCustomConfig().getConfigurationSection("items").getKeys(false).size()][2];
