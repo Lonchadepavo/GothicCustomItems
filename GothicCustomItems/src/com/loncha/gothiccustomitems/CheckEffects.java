@@ -86,7 +86,7 @@ public class CheckEffects implements Listener {
 					cleanArrays(nombreItem,"attack",d);
 				}
 			} catch(Exception ex) {
-				
+				ex.printStackTrace();
 			}
 		}
 		
