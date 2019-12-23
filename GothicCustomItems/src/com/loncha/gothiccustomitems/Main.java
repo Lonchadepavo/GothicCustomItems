@@ -151,102 +151,108 @@ public class Main extends JavaPlugin implements Listener{
 			}
 			
 		} else if (cmd.getName().equalsIgnoreCase("setnombre") && sender.hasPermission("gcustomitems.crearitems")) {
-			//Comando para cambiar el nombre de un item
-			if (args.length < 2) {
-				p.sendMessage("Uso: /setnombre <color> <nombre>");
-				
-				return true;
-				
-			} else {
-				ItemStack item = p.getInventory().getItemInMainHand();
-				
-				if (item != null) {
-					ItemMeta meta = item.getItemMeta();
-					
-					ChatColor color = ChatColor.valueOf(args[0]);
-					
-					String nombre = "";
-					for (int i = 1; i < args.length; i++) {
-						if (i == args.length-1) {
-							nombre+=args[i];
-						} else {
-							nombre+=args[i]+" ";
-						}
-					}
-					
-					meta.setDisplayName(color+nombre);	
-					item.setItemMeta(meta);
+			if (p.getInventory().getItemInMainHand() != null) {
+				//Comando para cambiar el nombre de un item
+				if (args.length < 2) {
+					p.sendMessage("Uso: /setnombre <color> <nombre>");
 					
 					return true;
+					
 				} else {
-					p.sendMessage(ChatColor.RED+"Tienes que tener un item en la mano");
+					ItemStack item = p.getInventory().getItemInMainHand();
+					
+					if (item != null) {
+						ItemMeta meta = item.getItemMeta();
+						
+						ChatColor color = ChatColor.valueOf(args[0]);
+						
+						String nombre = "";
+						for (int i = 1; i < args.length; i++) {
+							if (i == args.length-1) {
+								nombre+=args[i];
+							} else {
+								nombre+=args[i]+" ";
+							}
+						}
+						
+						meta.setDisplayName(color+nombre);	
+						item.setItemMeta(meta);
+						
+						return true;
+					} else {
+						p.sendMessage(ChatColor.RED+"Tienes que tener un item en la mano");
+					}
 				}
 			}
 			
 		} else if (cmd.getName().equalsIgnoreCase("setdescripcion") && sender.hasPermission("gcustomitems.crearitems")) {
-			//Comando para cambiar la descripción de un item
-			if (args.length < 2) {
-				p.sendMessage("Uso: /setdescripcion <color> <descripcion>");
-				
-				return true;
-				
-			} else {
-				ItemStack item = p.getInventory().getItemInMainHand();
-				
-				if (item != null) {
-					ItemMeta meta = item.getItemMeta();
-					
-					ChatColor color = ChatColor.valueOf(args[0]);
-					
-					List<String> descripcion = new ArrayList<String>();
-					String desc = "";
-					for(int i = 1; i < args.length; i++) {
-						desc+=args[i]+" ";
-					}
-					descripcion.add(color+desc);
-					
-					meta.setLore(descripcion);	
-					item.setItemMeta(meta);
+			if (p.getInventory().getItemInMainHand() != null) {
+				//Comando para cambiar la descripción de un item
+				if (args.length < 2) {
+					p.sendMessage("Uso: /setdescripcion <color> <descripcion>");
 					
 					return true;
+					
 				} else {
-					p.sendMessage(ChatColor.RED+"Tienes que tener un item en la mano");
+					ItemStack item = p.getInventory().getItemInMainHand();
+					
+					if (item != null) {
+						ItemMeta meta = item.getItemMeta();
+						
+						ChatColor color = ChatColor.valueOf(args[0]);
+						
+						List<String> descripcion = new ArrayList<String>();
+						String desc = "";
+						for(int i = 1; i < args.length; i++) {
+							desc+=args[i]+" ";
+						}
+						descripcion.add(color+desc);
+						
+						meta.setLore(descripcion);	
+						item.setItemMeta(meta);
+						
+						return true;
+					} else {
+						p.sendMessage(ChatColor.RED+"Tienes que tener un item en la mano");
+					}
 				}
 			}
 			
 		} else if (cmd.getName().equalsIgnoreCase("setefectos") && sender.hasPermission("gcustomitems.crearitems")) {
-			// /setefectos <efectos> <duracion> <accion> <nivelefecto>
-			if (args.length < 3) {
-				p.sendMessage("Uso: /setefectos <efectos> <duracion> <accion> <nivelefecto>");
-				
-				return true;
-				
-			} else {
-				if (p.getInventory().getItemInMainHand() != null) {
-					String s = "";
-					
-					if (p.getInventory().getItemInMainHand().getItemMeta().getDisplayName() == null) {
-						s += p.getInventory().getItemInMainHand().getType()+" ";
-					} else {
-						s += p.getInventory().getItemInMainHand().getItemMeta().getDisplayName()+" ";
-					}
-					
-					
-					for (String n : args2) {
-						s += n+" ";
-					}
-					
-					efectosItems.add(s);
-					
-					saveDatos(true);
-					ce.loadDatos();
-					efectosItems = new ArrayList<String>();
-					
-					p.sendMessage("Nuevo efecto establecido: " + s);
+			if (p.getInventory().getItemInMainHand() != null) {
+				// /setefectos <efectos> <duracion> <accion> <nivelefecto>
+				if (args.length < 3) {
+					p.sendMessage("Uso: /setefectos <efectos> <duracion> <accion> <nivelefecto>");
 					
 					return true;
+					
 				} else {
-					p.sendMessage(ChatColor.RED+"Tienes que tener un item en la mano");
+					if (p.getInventory().getItemInMainHand() != null) {
+						String s = "";
+						
+						if (p.getInventory().getItemInMainHand().getItemMeta().getDisplayName() == null) {
+							s += p.getInventory().getItemInMainHand().getType()+" ";
+						} else {
+							s += p.getInventory().getItemInMainHand().getItemMeta().getDisplayName()+" ";
+						}
+						
+						
+						for (String n : args2) {
+							s += n+" ";
+						}
+						
+						efectosItems.add(s);
+						
+						saveDatos(true);
+						ce.loadDatos();
+						efectosItems = new ArrayList<String>();
+						
+						p.sendMessage("Nuevo efecto establecido: " + s);
+						
+						return true;
+					} else {
+						p.sendMessage(ChatColor.RED+"Tienes que tener un item en la mano");
+					}
 				}
 			}
 			
@@ -304,7 +310,7 @@ public class Main extends JavaPlugin implements Listener{
 				
 				return true;
 			}
-		} else if(cmd.getName().equalsIgnoreCase("recargarefectos")) {
+		} else if(cmd.getName().equalsIgnoreCase("recargarefectos") && sender.hasPermission("gcustomitems.crearitems")) {
 			//Comando para recargar los efectos (por si ha habido algún problema)
 			p.sendMessage(ChatColor.YELLOW+"Cargando efectos...");
 			ce.loadDatos();
