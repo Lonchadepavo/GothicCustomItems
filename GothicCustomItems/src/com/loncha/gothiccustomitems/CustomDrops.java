@@ -36,8 +36,8 @@ public class CustomDrops implements Listener{
 	private FileConfiguration customDrops;
 	
 	public CustomDrops() throws IOException, InvalidConfigurationException {
-		setup();
-		cargarItems();
+		//setup();
+		//cargarItems();
 	}
 	
 	//Método para cargar el archivo de configuración personalizado (customdrops.yml)

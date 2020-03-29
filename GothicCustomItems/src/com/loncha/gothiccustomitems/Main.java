@@ -36,25 +36,25 @@ import net.minecraft.server.v1_12_R1.NBTTagString;
 public class Main extends JavaPlugin implements Listener{	
 	ArrayList<String> efectosItems = new ArrayList<String>();
 	ArrayList<String> efectosCargados = new ArrayList<String>();
-	CheckEffects ce;
-	CustomDrops cd;
+	//CheckEffects ce;
+	//CustomDrops cd;
 	
 	public void onEnable() {	
 		try {
-			cd = new CustomDrops(); //Inicializar la clase de customdrops (objetos custom al romper bloques)
-			ce = new CheckEffects(); //Inicializar la clase checkeffects (efectos de pociones sobre objetos)
+			//cd = new CustomDrops(); //Inicializar la clase de customdrops (objetos custom al romper bloques)
+			//ce = new CheckEffects(); //Inicializar la clase checkeffects (efectos de pociones sobre objetos)
 			
 			//Registrar los eventos
 			getServer().getPluginManager().registerEvents(this, this);
-			getServer().getPluginManager().registerEvents(this.ce, this);
-			getServer().getPluginManager().registerEvents(this.cd, this);
+			//getServer().getPluginManager().registerEvents(this.ce, this);
+			//getServer().getPluginManager().registerEvents(this.cd, this);
 			
 			//Se crea la carpeta si no existe
 			File d = new File("plugins/GothicCustomItems");
 			if (!d.exists()) {
 				d.mkdir();
 			}
-		} catch (IOException | InvalidConfigurationException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}		
 	}
@@ -244,7 +244,7 @@ public class Main extends JavaPlugin implements Listener{
 						efectosItems.add(s);
 						
 						saveDatos(true);
-						ce.loadDatos();
+						//ce.loadDatos();
 						efectosItems = new ArrayList<String>();
 						
 						p.sendMessage("Nuevo efecto establecido: " + s);
@@ -287,8 +287,8 @@ public class Main extends JavaPlugin implements Listener{
 						f.delete();
 						saveDatos(false);
 						
-						ce.loadDatos();
-						ce.contarStrings();
+						//ce.loadDatos();
+						//ce.contarStrings();
 					} else {
 						p.sendMessage("El número tiene que ser menor a: "+efectosCargados.size() + " y mayor que -1");
 					}
@@ -299,8 +299,8 @@ public class Main extends JavaPlugin implements Listener{
 					File f = new File("plugins/GothicCustomItems/efectosItems.txt");
 					f.delete();
 					
-					ce.loadDatos();
-					ce.contarStrings();
+					//ce.loadDatos();
+					//ce.contarStrings();
 					
 					p.sendMessage("Has borrado todos los efectos guardados");
 					
@@ -313,7 +313,7 @@ public class Main extends JavaPlugin implements Listener{
 		} else if(cmd.getName().equalsIgnoreCase("recargarefectos") && sender.hasPermission("gcustomitems.crearitems")) {
 			//Comando para recargar los efectos (por si ha habido algún problema)
 			p.sendMessage(ChatColor.YELLOW+"Cargando efectos...");
-			ce.loadDatos();
+			//ce.loadDatos();
 			p.sendMessage(ChatColor.GREEN+"Efectos cargados");
 			
 			return true;

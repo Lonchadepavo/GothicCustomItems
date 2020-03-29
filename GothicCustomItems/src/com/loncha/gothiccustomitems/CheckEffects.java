@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 import org.bukkit.Material;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -62,14 +63,17 @@ public class CheckEffects implements Listener {
 	//Evento que controla cuando una entidad ha atacado para ver si tiene que establecer un efecto de poción
 	@EventHandler
 	public void onDamage(EntityDamageByEntityEvent e) {
+		System.out.println("eventodamage1");
 		//Comprueba si la el evento ha sido desencadenado por una entidad (el daño puede ser desencadenado por muchas cosas, hace falta asegurarse de que es una entidad viva)
-		if (e instanceof LivingEntity) {
+		if (e.getEntity() instanceof LivingEntity) {
+			System.out.println("eventodamage4");
 			ItemStack item = new ItemStack(Material.AIR);
 			LivingEntity d = (LivingEntity) e.getEntity();
 			
 			Player p = (Player) e.getDamager();
 			
 			try {
+				System.out.println("eventodamage2");
 				//Comprueba si el damager es un player.
 				if (e.getDamager() instanceof Player) {
 						
@@ -82,7 +86,7 @@ public class CheckEffects implements Listener {
 					} else {
 						nombreItem = item.getItemMeta().getDisplayName();
 					}
-				
+					System.out.println("eventodamage3");
 					cleanArrays(nombreItem,"attack",d);
 				}
 			} catch(Exception ex) {
@@ -95,6 +99,7 @@ public class CheckEffects implements Listener {
 	//Evento que controla cuando cambias de el item que tienes en la mano principal
 	@EventHandler
 	public void onHandChange(PlayerItemHeldEvent e) {
+		System.out.println("entraevento");
 		Player p = e.getPlayer();
 		ItemStack item = new ItemStack(Material.AIR);
 		item = p.getInventory().getItem(e.getNewSlot()); 
@@ -224,6 +229,7 @@ public class CheckEffects implements Listener {
 	}
 	
 	public void cleanArrays(String nombreItem, String accion, LivingEntity p) {
+		System.out.println("entra");
 		try {
 			if (items.contains(nombreItem)) {
 				itemActivado = nombreItem;
