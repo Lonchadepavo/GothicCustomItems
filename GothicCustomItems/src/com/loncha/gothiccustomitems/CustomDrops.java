@@ -36,8 +36,8 @@ public class CustomDrops implements Listener{
 	private FileConfiguration customDrops;
 	
 	public CustomDrops() throws IOException, InvalidConfigurationException {
-		//setup();
-		//cargarItems();
+		setup();
+		cargarItems();
 	}
 	
 	//Método para cargar el archivo de configuración personalizado (customdrops.yml)
@@ -150,24 +150,24 @@ public class CustomDrops implements Listener{
 							}
 						}
 					}
-				}
-				
-			}
-			
+				}			
+			}		
 		}
 	}
-		
+	
+	//Método que comprueba si una localización está dentro de una región
 	public static boolean inRegion(Location loc, String region) {
 
 	    Vector v = BukkitUtil.toVector(loc);
 	    RegionManager manager = WGBukkit.getRegionManager(loc.getWorld());
 	    ApplicableRegionSet set = manager.getApplicableRegions(v);
 	    
-	    if (manager.hasRegion(region)) {
-	    	
+	    if (manager.hasRegion(region)) {    	
 	    	return true;
+	    	
 	    } else {
 	    	return false;
+	    	
 	    }
 
 	}

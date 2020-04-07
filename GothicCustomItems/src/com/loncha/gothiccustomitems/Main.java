@@ -34,20 +34,21 @@ import net.minecraft.server.v1_12_R1.NBTTagList;
 import net.minecraft.server.v1_12_R1.NBTTagString;
 
 public class Main extends JavaPlugin implements Listener{	
-	ArrayList<String> efectosItems = new ArrayList<String>();
+	ArrayList<String> efectosItems = new ArrayList<String>(); //Lista con los efectos que pueden tener los items
 	ArrayList<String> efectosCargados = new ArrayList<String>();
-	//CheckEffects ce;
-	//CustomDrops cd;
+	
+	CheckEffects ce;
+	CustomDrops cd;
 	
 	public void onEnable() {	
 		try {
-			//cd = new CustomDrops(); //Inicializar la clase de customdrops (objetos custom al romper bloques)
-			//ce = new CheckEffects(); //Inicializar la clase checkeffects (efectos de pociones sobre objetos)
+			cd = new CustomDrops(); //Inicializar la clase de customdrops (objetos custom al romper bloques)
+			ce = new CheckEffects(); //Inicializar la clase checkeffects (efectos de pociones sobre objetos)
 			
 			//Registrar los eventos
 			getServer().getPluginManager().registerEvents(this, this);
-			//getServer().getPluginManager().registerEvents(this.ce, this);
-			//getServer().getPluginManager().registerEvents(this.cd, this);
+			getServer().getPluginManager().registerEvents(this.ce, this);
+			getServer().getPluginManager().registerEvents(this.cd, this);
 			
 			//Se crea la carpeta si no existe
 			File d = new File("plugins/GothicCustomItems");
